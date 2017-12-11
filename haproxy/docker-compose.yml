@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  acme_haproxy:
+    image: haproxy
+    container_name: acme_haproxy
+    hostname: haproxy
+    domainname: acme.com
+    ports:
+      - 80:80
+    volumes:
+      - ./resources/etc/haproxy:/usr/local/etc/haproxy
+    networks:
+      - acme
+
+networks:
+  acme:
+    external:
+      name: acme
