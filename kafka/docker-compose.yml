@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  acme_kafka_01:
+    image: acntechie/kafka
+    container_name: acme_kafka_01
+    hostname: kafka01
+    domainname: acme.com
+    ports:
+      - "9092:9092"
+    environment:
+      - ZOOKEEPER_HOSTS=acme_zookeeper_01:2181
+    depends_on:
+      - zookeeper_01
+    networks:
+      - acme
+
+  acme_zookeeper_01:
+    image: acntechie/zookeeper
+    container_name: acme_zookeeper_01
+    hostname: zookeeper01
+    domainname: acme.com
+    ports:
+      - "2181:2181"
+    networks:
+      - acme
+
+networks:
+  acme:
+    external:
+      name: acme
