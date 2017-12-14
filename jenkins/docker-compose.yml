@@ -6,8 +6,6 @@ services:
     container_name: acme_jenkins
     hostname: jenkins
     domainname: acme.com
-    ports:
-      - 8080:8080
     volumes:
       - acme_jenkins:/var/jenkins_hom
     networks:

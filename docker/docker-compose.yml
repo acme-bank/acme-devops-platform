@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  acme_docker_hub:
+    image: konradkleine/docker-registry-frontend:v2
+    container_name: acme_docker_hub
+    hostname: docker-hub
+    domainname: acme.com
+    environment:
+      - ENV_DOCKER_REGISTRY_HOST=acme_docker_registry
+      - ENV_DOCKER_REGISTRY_PORT=5000
+    depends_on:
+      - acme_docker_registry
+    networks:
+      - acme
+
+  acme_docker_registry:
+    image: registry:2
+    container_name: acme_docker_registry
+    hostname: docker-registry
+    domainname: acme.com
+    volumes:
+      - acme_docker:/var/lib/registry
+    networks:
+      - acme
+
+volumes:
+  acme_jenkins:
+    external:
+      name: acme_docker
+
+networks:
+  acme:
+    external:
+      name: acme
