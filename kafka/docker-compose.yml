@@ -11,7 +11,7 @@ services:
     environment:
       - ZOOKEEPER_HOSTS=acme_zookeeper_01:2181
     depends_on:
-      - zookeeper_01
+      - acme_zookeeper_01
     networks:
       - acme
 
