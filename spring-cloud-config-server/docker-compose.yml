@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  acme_config:
+    image: hyness/spring-cloud-config-server
+    container_name: acme_config
+    hostname: config
+    domainname: acme.com
+    environment:
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/acme-bank/acme-application-config.git
+    networks:
+      - acme
+
+networks:
+  acme:
+    external:
+      name: acme

@@ -4,7 +4,7 @@ services:
   acme_haproxy:
     image: haproxy
     container_name: acme_haproxy
-    hostname: haproxy
+    hostname: proxy
     domainname: acme.com
     ports:
       - 80:80
