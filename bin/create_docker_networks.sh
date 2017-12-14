@@ -6,7 +6,7 @@ echo "Creating Docker networks..."
 
 for network in "${NETWORKS[@]}"
 do
-   docker network create acme
+   docker network create ${network}
    echo "Created Docker network ${network}"
 done
 

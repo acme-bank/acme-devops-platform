@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  acme_nexus:
+    image: sonatype/nexus3
+    container_name: acme_nexus
+    hostname: nexus
+    domainname: acme.com
+    networks:
+      - acme
+
+networks:
+  acme:
+    external:
+      name: acme

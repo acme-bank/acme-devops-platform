@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  acme_jenkins:
+    image: jenkins/jenkins
+    container_name: acme_jenkins
+    hostname: jenkins
+    domainname: acme.com
+    ports:
+      - 8080:8080
+    volumes:
+      - acme_jenkins:/var/jenkins_hom
+    networks:
+      - acme
+
+volumes:
+  acme_jenkins:
+    external:
+      name: acme_jenkins
+
+networks:
+  acme:
+    external:
+      name: acme

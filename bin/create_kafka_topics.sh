@@ -1,9 +1,7 @@
 #!/bin/bash
 
-if [ -z "${ZOOKEEPER_NODES}" ]; then
-   echo "No ZOOKEEPER_NODES variable defined"
-   exit 1
-fi
+KAFKA_NODE=acme_kafka_01
+ZOOKEEPER_NODES=acme_zookeeper_01
 
 TOPICS=("registered-loans" "validated-loans" "enriched-loans" "pending-loans" "augmented-loans" "entitled-loans" "rejected-loans")
 
@@ -14,7 +12,7 @@ echo "Creating Kafka topics..."
 
 for topic in "${TOPICS[@]}"
 do
-   docker exec -it acme_kafka_01 ./bin/kafka-topics.sh --create --zookeeper ${ZOOKEEPER_NODES} --partitions ${PARTITIONS} --replication-factor ${REPLICATION_FACTOR} --topic ${topic}
+   docker exec -it ${KAFKA_NODE} ./bin/kafka-topics.sh --create --zookeeper ${ZOOKEEPER_NODES} --partitions ${PARTITIONS} --replication-factor ${REPLICATION_FACTOR} --topic ${topic}
    echo "Created Kafka topic ${topic} with partitions ${PARTITIONS} and replication factor ${REPLICATION_FACTOR}"
 done
 

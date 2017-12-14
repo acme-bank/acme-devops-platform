@@ -7,7 +7,7 @@ services:
     hostname: kafka01
     domainname: acme.com
     ports:
-      - "9092:9092"
+      - 9092:9092
     environment:
       - ZOOKEEPER_HOSTS=acme_zookeeper_01:2181
     depends_on:
@@ -21,7 +21,7 @@ services:
     hostname: zookeeper01
     domainname: acme.com
     ports:
-      - "2181:2181"
+      - 2181:2181
     networks:
       - acme
 
