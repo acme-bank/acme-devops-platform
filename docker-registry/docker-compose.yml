@@ -20,14 +20,14 @@ services:
     hostname: docker-registry
     domainname: acme.com
     volumes:
-      - acme_docker:/var/lib/registry
+      - acme_docker_registry:/var/lib/registry
     networks:
       - acme
 
 volumes:
-  acme_jenkins:
+  acme_docker_registry:
     external:
-      name: acme_docker
+      name: acme_docker_registry
 
 networks:
   acme:
