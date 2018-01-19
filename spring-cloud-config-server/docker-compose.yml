@@ -6,6 +6,8 @@ services:
     container_name: acme_config
     hostname: config
     domainname: acme.com
+    ports:
+      - 8004:8888 # Debug
     environment:
       - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/acme-bank/acme-application-config.git
     networks:

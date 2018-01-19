@@ -8,6 +8,7 @@ services:
     domainname: acme.com
     ports:
       - 80:80
+      - 8000:1936 # Debug
     volumes:
       - ./resources/etc/haproxy:/usr/local/etc/haproxy
     networks:
