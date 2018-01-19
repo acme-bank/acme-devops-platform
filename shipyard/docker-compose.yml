@@ -15,6 +15,7 @@ services:
       - acme_shipyard_datastore:rethinkdb
     networks:
       - acme
+    command: server
 
   acme_shipyard_docker_proxy:
     image: shipyard/docker-proxy
