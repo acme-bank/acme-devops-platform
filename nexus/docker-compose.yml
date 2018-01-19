@@ -6,8 +6,15 @@ services:
     container_name: acme_nexus
     hostname: nexus
     domainname: acme.com
+    volumes:
+      - acme_nexus:/nexus-data
     networks:
       - acme
+
+volumes:
+  acme_nexus:
+    external:
+      name: acme_nexus
 
 networks:
   acme:
