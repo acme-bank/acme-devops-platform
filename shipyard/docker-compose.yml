@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  acme_shipyard:
+    image: shipyard/shipyard
+    container_name: acme_shipyard
+    hostname: shipyard
+    domainname: acme.com
+    ports:
+      - 8005:8080 # Debug
+    depends_on:
+      - acme_shipyard_docker_proxy
+      - acme_shipyard_datastore
+    links:
+      - acme_shipyard_datastore:rethinkdb
+    networks:
+      - acme
+
+  acme_shipyard_docker_proxy:
+    image: shipyard/docker-proxy
+    container_name: acme_shipyard_docker_proxy
+    hostname: shipyard-docker-proxy
+    domainname: acme.com
+    ports:
+      - 2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - acme
+
+  acme_shipyard_datastore:
+    image: rethinkdb
+    container_name: acme_shipyard_datastore
+    hostname: acme-shipyard-datastore
+    domainname: acme.com
+    networks:
+      - acme
+
+networks:
+  acme:
+    external:
+      name: acme
