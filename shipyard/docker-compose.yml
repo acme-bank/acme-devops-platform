@@ -15,15 +15,13 @@ services:
       - acme_shipyard_datastore:rethinkdb
     networks:
       - acme
-    command: server
+    command: server --docker "tcp://acme_shipyard_docker_proxy:2375"
 
   acme_shipyard_docker_proxy:
     image: shipyard/docker-proxy
     container_name: acme_shipyard_docker_proxy
     hostname: shipyard-docker-proxy
     domainname: acme.com
-    ports:
-      - 2375:2375
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
