@@ -9,7 +9,7 @@ echo "${HOST_IP} \
       bank.acme.com \
       loan.bank.acme.com \
       ldap.acme.com \
-      proxy.acme.com \
+      haproxy.acme.com \
       jenkins.acme.com \
       nexus.acme.com \
       docker.acme.com \
