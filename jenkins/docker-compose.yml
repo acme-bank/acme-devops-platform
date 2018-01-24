@@ -4,6 +4,7 @@ services:
   acme_jenkins:
     image: jenkins/jenkins
     container_name: acme_jenkins
+    restart: always
     hostname: jenkins
     domainname: acme.com
     ports:
@@ -11,7 +12,9 @@ services:
     volumes:
       - acme_jenkins:/var/jenkins_home
     networks:
-      - acme
+      acme:
+        aliases:
+          - jenkins.acme.com
 
 volumes:
   acme_jenkins:

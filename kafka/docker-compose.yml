@@ -4,6 +4,7 @@ services:
   acme_kafka_01:
     image: acntechie/kafka
     container_name: acme_kafka_01
+    restart: always
     hostname: kafka01
     domainname: acme.com
     ports:
@@ -13,17 +14,22 @@ services:
     depends_on:
       - acme_zookeeper_01
     networks:
-      - acme
+      acme:
+        aliases:
+          - kafka01.acme.com
 
   acme_zookeeper_01:
     image: acntechie/zookeeper
     container_name: acme_zookeeper_01
+    restart: always
     hostname: zookeeper01
     domainname: acme.com
     ports:
       - 2181:2181
     networks:
-      - acme
+      acme:
+        aliases:
+          - zookeeper01.acme.com
 
 networks:
   acme:

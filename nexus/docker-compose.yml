@@ -4,6 +4,7 @@ services:
   acme_nexus:
     image: sonatype/nexus3
     container_name: acme_nexus
+    restart: always
     hostname: nexus
     domainname: acme.com
     ports:
@@ -11,7 +12,9 @@ services:
     volumes:
       - acme_nexus:/nexus-data
     networks:
-      - acme
+      acme:
+        aliases:
+          - nexus.acme.com
 
 volumes:
   acme_nexus:

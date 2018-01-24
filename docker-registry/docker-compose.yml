@@ -4,6 +4,7 @@ services:
   acme_docker_hub:
     image: konradkleine/docker-registry-frontend:v2
     container_name: acme_docker_hub
+    restart: always
     hostname: docker-hub
     domainname: acme.com
     ports:
@@ -14,17 +15,23 @@ services:
     depends_on:
       - acme_docker_registry
     networks:
-      - acme
+      acme:
+        aliases:
+          - docker-hub.acme.com
 
   acme_docker_registry:
     image: registry:2
     container_name: acme_docker_registry
+    restart: always
     hostname: docker-registry
     domainname: acme.com
     volumes:
       - acme_docker_registry:/var/lib/registry
     networks:
-      - acme
+      acme:
+        aliases:
+          - docker-registry.acme.com
+          - docker.acme.com
 
 volumes:
   acme_docker_registry:

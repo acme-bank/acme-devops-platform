@@ -4,6 +4,7 @@ services:
   acme_shipyard:
     image: shipyard/shipyard
     container_name: acme_shipyard
+    restart: always
     hostname: shipyard
     domainname: acme.com
     ports:
@@ -14,26 +15,34 @@ services:
     links:
       - acme_shipyard_datastore:rethinkdb
     networks:
-      - acme
+      acme:
+        aliases:
+          - shipyard.acme.com
     command: server --docker "tcp://acme_shipyard_docker_proxy:2375"
 
   acme_shipyard_docker_proxy:
     image: shipyard/docker-proxy
     container_name: acme_shipyard_docker_proxy
+    restart: always
     hostname: shipyard-docker-proxy
     domainname: acme.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - acme
+      acme:
+        aliases:
+          - shipyard-docker-proxy.acme.com
 
   acme_shipyard_datastore:
     image: rethinkdb
     container_name: acme_shipyard_datastore
-    hostname: acme-shipyard-datastore
+    restart: always
+    hostname: shipyard-datastore
     domainname: acme.com
     networks:
-      - acme
+      acme:
+        aliases:
+          - shipyard-datastore.acme.com
 
 networks:
   acme:
