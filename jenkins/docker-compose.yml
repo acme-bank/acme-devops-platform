@@ -2,8 +2,7 @@ version: "3"
 
 services:
   acme_jenkins:
-    build: .
-    image: docker.acme.com/jenkins:latest
+    image: acmebank/jenkins
     container_name: acme_jenkins
     restart: always
     hostname: jenkins
