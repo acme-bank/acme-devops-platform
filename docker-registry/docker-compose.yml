@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  acme_docker_hub:
+  acme_docker_ui:
     image: konradkleine/docker-registry-frontend:v2
-    container_name: acme_docker_hub
+    container_name: acme_docker_ui
     restart: always
-    hostname: docker-hub
+    hostname: docker-ui
     domainname: acme.com
     ports:
       - 8003:80 # Debug
@@ -17,13 +17,13 @@ services:
     networks:
       acme:
         aliases:
-          - docker-hub.acme.com
+          - docker-ui.acme.com
 
   acme_docker_registry:
     image: registry:2
     container_name: acme_docker_registry
     restart: always
-    hostname: docker-registry
+    hostname: docker
     domainname: acme.com
     ports:
       - 8004:80 # Debug
@@ -34,8 +34,8 @@ services:
     networks:
       acme:
         aliases:
-          - docker-registry.acme.com
           - docker.acme.com
+          - docker-registry.acme.com
 
 volumes:
   acme_docker_registry:

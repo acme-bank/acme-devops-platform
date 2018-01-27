@@ -1,23 +1,42 @@
 #!/bin/bash
 
-echo "Creating hostname entries..."
+set -e
+
+if [ "$(whoami)" != "root" ]; then
+    echo "Must be root"
+    exit 1
+fi
 
 HOST_IP=127.0.0.1
 
-echo "${HOST_IP} \
-      acme.com \
-      bank.acme.com \
-      loan.bank.acme.com \
-      ldap.acme.com \
-      haproxy.acme.com \
-      jenkins.acme.com \
-      nexus.acme.com \
-      docker.acme.com \
-      docker-registry.acme.com \
-      docker-hub.acme.com \
-      shipyard.acme.com \
-      config.acme.com \
-      kafka01.acme.com \
-      zookeeper01.acme.com" >> /etc/hosts
+DOMAIN="acme.com"
+
+HOSTNAMES=(
+    "${DOMAIN}"
+    "bank.${DOMAIN}"
+    "loan.bank.${DOMAIN}"
+    "ldap.${DOMAIN}"
+    "haproxy.${DOMAIN}"
+    "jenkins.${DOMAIN}"
+    "nexus.${DOMAIN}"
+    "docker.${DOMAIN}"
+    "docker-ui.${DOMAIN}"
+    "shipyard.acme.com"
+    "config.${DOMAIN}"
+    "kafka01.${DOMAIN}"
+    "zookeeper01.${DOMAIN}"
+    )
+
+echo "Creating hostname entries..."
+
+for hostname in "${HOSTNAMES[@]}"
+do
+    if grep -q "\s${hostname}" /etc/hosts; then
+        echo -e "\t- Hostname ${hostname} already exists"
+    else
+        echo -e "\t- Adding hostname ${hostname}"
+        echo "${HOST_IP} ${hostname}" >> /etc/hosts
+    fi
+done
 
 echo "All hostname entries created"

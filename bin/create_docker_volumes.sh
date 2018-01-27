@@ -1,6 +1,10 @@
 #!/bin/bash
 
-VOLUMES=("acme_nexus" "acme_jenkins" "acme_docker_registry")
+VOLUMES=(
+    "acme_nexus"
+    "acme_jenkins"
+    "acme_docker_registry"
+    )
 
 echo "Creating Docker volumes..."
 
