@@ -7,9 +7,9 @@ if [ "$(whoami)" != "root" ]; then
     exit 1
 fi
 
-HOST_IP=127.0.0.1
+HOST_IP="${1:-127.0.0.1}"
 
-DOMAIN="acme.com"
+DOMAIN="${2:-acme.com}"
 
 HOSTNAMES=(
     "${DOMAIN}"

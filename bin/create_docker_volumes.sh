@@ -11,7 +11,7 @@ echo "Creating Docker volumes..."
 for volume in "${VOLUMES[@]}"
 do
    docker volume create ${volume}
-   echo "Created Docker volume ${volume}"
+   echo -e "\t- Created Docker volume ${volume}"
 done
 
 echo "All Docker volumes created"
