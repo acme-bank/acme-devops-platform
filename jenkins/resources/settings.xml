@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- PROXIES -->
+  <proxies>
+  </proxies>
+
+  <!-- SERVERS -->
+  <servers>
+  </servers>
+
+  <!-- MIRRORS -->
+  <mirrors>
+    <mirror>
+      <id>acme-nexus</id>
+      <name>ACME Nexus</name>
+      <url>http://nexus.acme.com/content/groups/public</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <!-- PROFILES -->
+  <profiles>
+    <profile>
+      <id>acme-nexus</id>
+
+      <!-- REPOSITORIES -->
+      <repositories>
+        <repository>
+          <id>acme-nexus-releases</id>
+          <name>ACME Nexus Releases</name>
+          <url>http://nexus.acme.com/content/repositories/releases</url>
+          <releases>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+            <checksumPolicy>warn</checksumPolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+
+        <repository>
+          <id>acme-nexus-snapshots</id>
+          <name>ACME Nexus Snapshots</name>
+          <url>http://nexus.acme.com/content/repositories/snapshots</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>daily</updatePolicy>
+            <checksumPolicy>fail</checksumPolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+
+      <!-- PLUGIN REPOSITORIES -->
+      <pluginRepositories>
+        <pluginRepository>
+          <id>acme-nexus-plugin-releases</id>
+          <name>ACME Nexus Plugin Releases</name>
+          <url>http://nexus.acme.com/content/repositories/releases</url>
+        </pluginRepository>
+
+        <pluginRepository>
+          <id>acme-nexus-plugin-snapshots</id>
+          <name>ACME Nexus Plugin Snapshots</name>
+          <url>http://nexus.acme.com/content/repositories/snapshots</url>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+</settings>
