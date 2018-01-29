@@ -7,10 +7,12 @@ services:
     restart: always
     hostname: nexus
     domainname: acme.com
+    user: root
     ports:
-      - 8002:8081 # Debug
+      - 8002:80 # Debug
     volumes:
       - acme_nexus:/nexus-data
+      - ./resources/nexus-default.properties:/opt/sonatype/nexus/etc/nexus-default.properties
     networks:
       acme:
         aliases:
