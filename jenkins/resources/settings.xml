@@ -93,4 +93,8 @@
       </pluginRepositories>
     </profile>
   </profiles>
+
+  <activeProfiles>
+    <activeProfile>acme-nexus</activeProfile>
+  </activeProfiles>
 </settings>
